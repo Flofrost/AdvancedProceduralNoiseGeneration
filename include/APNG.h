@@ -13,9 +13,12 @@ typedef struct UnstableTimeUnit{
 }UnstableTimeUnit;
 
 // Returns a boolean based on a random decision
-// The probability of success follow an exponential charge law
-// You can expect a 63% success rate at Tau time
-// And 95% success at 3xTau time
-int ExponentialUnstableTimeUnitCollapse(UnstableTimeUnit* unit);
+// The probability of success follow an linearlaw
+// You can expect a 50% success on tau/2 th try
+// And garanteed sucvess on the tau-th try
+int LinearUncertaintyCollapseFunction(UnstableTimeUnit* unit);
+
+
+int SigmoidUncertaintyCollapseFunction(UnstableTimeUnit* unit);
 
 #endif

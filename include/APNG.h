@@ -13,12 +13,15 @@ typedef struct UnstableTimeUnit{
 }UnstableTimeUnit;
 
 // Returns a boolean based on a random decision
-// The probability of success follow an linearlaw
-// You can expect a 50% success on tau/2 th try
-// And garanteed sucvess on the tau-th try
+// The probability distribution follow a poisson-like law
+// tau is used to control "when" the maximum of the distribution is
+// Most successes may happen at 2.2 * tau ^ (1/1.9) + 2.5 tries
 int LinearUncertaintyCollapseFunction(UnstableTimeUnit* unit);
 
 
 int SigmoidUncertaintyCollapseFunction(UnstableTimeUnit* unit);
+
+
+int OrderZeroUncertaintyCollapseFunction(UnstableTimeUnit* unit);
 
 #endif

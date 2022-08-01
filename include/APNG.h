@@ -13,15 +13,18 @@ typedef struct UnstableTimeUnit{
 }UnstableTimeUnit;
 
 // Returns a boolean based on a random decision
-// The probability distribution follow a poisson-like law
-// tau is used to control "when" the maximum of the distribution is
-// Most successes may happen at 2.2 * tau ^ (1/1.9) + 2.5 tries
-int LinearUncertaintyCollapseFunction(UnstableTimeUnit* unit);
+int PoissonUncertaintyCollapseFunction(UnstableTimeUnit* unit);
 
+// Returns a boolean based on a random decision
+int ExponentialDecayUncertaintyCollapseFunction(UnstableTimeUnit* unit);
 
-int SigmoidUncertaintyCollapseFunction(UnstableTimeUnit* unit);
+// Returns a boolean based on a random decision
+int ReversePoissonUncertaintyCollapseFunction(UnstableTimeUnit* unit);
 
+// Returns a boolean based on a random decision
+int LinearDecayUncertaintyCollapseFunction(UnstableTimeUnit* unit);
 
-int OrderZeroUncertaintyCollapseFunction(UnstableTimeUnit* unit);
+// Returns a boolean based on a random decision
+int NormalEnoughUncertaintyCollapseFunction(UnstableTimeUnit* unit);
 
 #endif

@@ -3,7 +3,7 @@
 #include <time.h>
 #include "include/APNG.h"
 
-#define STDLEN 50
+#define STDLEN 100
 
 int main(int argc, char** argv){
 
@@ -11,25 +11,20 @@ int main(int argc, char** argv){
     
     UnstableTimeUnit test;
     test.t = 0;
-    test.tau = 1;
-    test.sigma = 4;
+    test.tau = 50;
+    test.sigma = 10;
     
     unsigned int probs[STDLEN] = {0};
-    unsigned int i,k=0,l=0;
+    int i,k=0;
 
-    for(l = 5 ; l < 301 ; l++){
-        test.tau = l;
-        for(k = 0 ; k < 10000 ; k++){
-            for(i = 0 ; !LinearUncertaintyCollapseFunction(&test) ; i++);
-            if(i < STDLEN) probs[i]++;
-            // printf("\n");
-            // for(int j = 0 ; j < STDLEN ; j++) printf("%d,",probs[j]);
-        }
-        int tmp = 0;
-        for(int j = 0; j < STDLEN ; j++) tmp = (probs[j] > tmp) ? j : tmp;
-        for(int j = 0; j < STDLEN ; j++) probs[j] = 0;
-        printf("%d,",tmp);
+    while(k++ < 1000000){
+        for(i = 0 ; !PoissonUncertaintyCollapseFunction(&test) ; i++);
+        if(i < STDLEN) probs[i]++;
+        i = 0;
     }
-    
+
+    for(int j = 0 ; j < STDLEN ; j++) printf("%d,",probs[j]);
+    printf("\n");
+
     return 0;
 }

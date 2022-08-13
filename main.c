@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <Flofrost/WavTools.h>
 #include "include/APNG.h"
 
 #define STDLEN 100
@@ -11,20 +12,14 @@ int main(int argc, char** argv){
     
     UnstableTimeUnit test;
     test.t = 0;
-    test.tau = 50;
-    test.sigma = 10;
+    test.tau = 1000;
+    test.sigma = 100;
     
-    unsigned int probs[STDLEN] = {0};
-    int i,k=0;
+    FILE* fichier = Wcreate("test.wav", 8000, 1, 8);
 
-    while(k++ < 1000000){
-        for(i = 0 ; !PoissonUncertaintyCollapseFunction(&test) ; i++);
-        if(i < STDLEN) probs[i]++;
-        i = 0;
-    }
-
-    for(int j = 0 ; j < STDLEN ; j++) printf("%d,",probs[j]);
-    printf("\n");
+    for(int i = 0 ; i < 80000 ; i++) fputc(NormalEnoughUncertaintyCollapseFunction(&test) ? 255 : 0, fichier);
+    
+    Wclose(fichier);
 
     return 0;
 }

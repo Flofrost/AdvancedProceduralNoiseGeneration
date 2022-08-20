@@ -16,13 +16,15 @@ typedef struct UnstableValueUnit{
 
     UnstableTimeUnit* timeUnit;
     
-    int (*UncertaintyCollapseFunction)();
+    int (*UncertaintyCollapseFunction)(UnstableTimeUnit*);
 
-    int value;
+    float value;
 
-    int targetValue;
+    float targetValue;
 
-    int tau;
+    float tau;
+    
+    float (*EvolutionFunction)(float, float)
 }UnstableValueUnit;
 
 // Returns a boolean based on a random decision

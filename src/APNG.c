@@ -74,3 +74,9 @@ int NormalEnoughUncertainIntegerGenerator(){
     div *= RAND_MAX >> 3;
     return (RAND_MAX>>1) + (rand() & 1 ? div : -div);
 }
+
+
+void UnstableValueUnitProgressionFunction(UnstableValueUnit* unit){
+    if(unit->UncertaintyCollapseFunction(&unit->timeUnit)) unit->targetValue = unit->EvaluationFunction();
+    unit->value = unit->EvolutionFunction(unit->targetValue,unit->value,unit->params);
+}
